@@ -48,8 +48,9 @@ module JobBoard
         '@count' => params[:count],
         '@queue' => params[:queue]
       )
-      log msg: :allocated, queue: params[:queue],
-          count: params[:count], from: from, site: site
+      log body.merge(
+        level: :debug, msg: :allocated, from: from, site: site
+      )
       json body
     end
 
